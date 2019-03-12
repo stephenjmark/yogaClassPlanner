@@ -16,10 +16,6 @@ db.once("open", () => {
 });
 
 let classSchema = new mongoose.Schema({
-  id: {
-    type: Number,
-    unique: true
-  },
   name: String,
   sequence: Object
 });

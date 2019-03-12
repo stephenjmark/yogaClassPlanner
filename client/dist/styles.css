@@ -2,14 +2,15 @@
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .card-list {
+  width: 400px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: space-around;
+  justify-content: center;
 }
 
 .pose-card {
@@ -33,4 +34,14 @@
 .pose-card-img {
   width: 180px;
   height: auto;
+}
+
+button {
+  background-color: #4caf50;
+  color: while;
+  height: 50px;
+  width: 140px;
+  border: 2px solid black;
+  font-size: large;
+  /* Green */
 }

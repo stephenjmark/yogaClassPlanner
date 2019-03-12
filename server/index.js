@@ -33,10 +33,15 @@ app.get("/classes", (req, res) => {
   });
 });
 
-//
-app.post("/classes", () => {
-  Class.updateOne({}).then(data => {
-    res.send(data);
+app.post("/classes", (req, res) => {
+  let sequence = req.body.sequence;
+  let name = req.body.name;
+  Class.updateOne(
+    { name: name },
+    { name: name, sequence: sequence },
+    { upsert: true }
+  ).then(response => {
+    res.send(response);
     res.end();
   });
 });
