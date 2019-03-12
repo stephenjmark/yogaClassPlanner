@@ -1,0 +1,50 @@
+{
+  "name": "empty-project-react",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "scripts": {
+    "clean": "rm dist/bundle.js",
+    "build-dev": "webpack -d --mode development -w",
+    "build-prod": "webpack -p --mode production",
+    "test": "jest"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "body-parser": "^1.18.3",
+    "compression": "^1.7.3",
+    "cors": "^2.8.5",
+    "csv-stringify": "^5.3.0",
+    "express": "^4.16.4",
+    "faker": "^4.1.0",
+    "forever": "^0.15.3",
+    "jquery": "^3.3.1",
+    "mongodb": "^3.1.13",
+    "mongoose": "^5.4.16",
+    "morgan": "^1.9.1",
+    "path": "^0.12.7",
+    "pg": "^7.8.1",
+    "pg-promise": "^8.6.2",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2",
+    "react-modal": "^3.8.1",
+    "redis": "^2.8.0",
+    "request": "^2.88.0",
+    "sqlite3": "^4.0.6"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.1.2",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-jest": "^24.1.0",
+    "babel-loader": "^8.0.4",
+    "compression-webpack-plugin": "^2.0.0",
+    "jest": "^24.1.0",
+    "puppeteer": "^1.12.2",
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.2"
+  }
+}
