@@ -3,9 +3,8 @@ const Pose = require("./index").Pose;
 
 data.forEach(pose => {
   Pose.updateOne(
-    { _id: pose.id },
+    { sankrit_name: pose.sanskrit_name },
     {
-      _id: pose.id,
       sankrit_name: pose.sanskrit_name,
       english_name: pose.english_name,
       img_url: pose.img_url

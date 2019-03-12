@@ -25,10 +25,6 @@ let classSchema = new mongoose.Schema({
 });
 
 let poseSchema = new mongoose.Schema({
-  id: {
-    type: Number,
-    unique: true
-  },
   sankrit_name: String,
   english_name: String,
   img_url: String

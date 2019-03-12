@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import PoseCard from "./PoseCard.jsx";
 
 export default class PoseList extends React.Component {
   constructor(props) {
@@ -7,6 +8,11 @@ export default class PoseList extends React.Component {
     this.state = {
       poses: []
     };
+    this.handleAdd = this.handleAdd.bind(this);
+  }
+
+  handleAdd(pose) {
+    this.props.handleClick(pose, "add");
   }
 
   componentDidMount() {
@@ -22,8 +28,12 @@ export default class PoseList extends React.Component {
   }
 
   render() {
-    return this.state.poses.map(pose => {
-      return <PoseCard pose={pose} />;
-    });
+    return (
+      <div className="card-list">
+        {this.state.poses.slice(0, 10).map(pose => {
+          return <PoseCard handleClick={this.handleAdd} pose={pose} />;
+        })}
+      </div>
+    );
   }
 }
