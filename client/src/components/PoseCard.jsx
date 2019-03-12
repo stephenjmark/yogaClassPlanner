@@ -15,7 +15,12 @@ export default class PoseCard extends React.Component {
 
   render() {
     return (
-      <div onClick={this.onClick} className="pose-card">
+      <div
+        onClick={this.onClick}
+        className={
+          this.props.selected ? "pose-card selected-card" : "pose-card"
+        }
+      >
         <div className="sanskrit-name">{this.props.pose.sankrit_name}</div>
         <img src={this.props.pose.img_url} className="pose-card-img" />
         <div className="english-name">{this.props.pose.english_name}</div>

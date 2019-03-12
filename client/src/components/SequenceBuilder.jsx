@@ -6,32 +6,60 @@ export default class SequenceBuilder extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      poses: []
+      selectedPose: null
     };
-    this.handleRemove = this.handleRemove.bind(this);
+    this.handleSelect = this.handleSelect.bind(this);
+    this.removePose = this.removePose.bind(this);
+    this.insertUp = this.insertUp.bind(this);
+    this.insertDown = this.insertDown.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
   }
 
-  handleRemove(pose) {
-    this.props.handleClick(pose, "remove");
+  removePose() {
+    this.props.handleClick(this.state.selectedPose, "remove");
+    this.setState({ selectedPose: null });
   }
 
-  componentDidMount() {
-    // axios
-    //   .get("/poses")
-    //   .then(({ data }) => {
-    //     console.log(data);
-    //     this.setState({ poses: data });
-    //   })
-    //   .catch(err => {
-    //     console.log(err);
-    //   });
+  insertUp() {
+    this.props.handleClick(this.state.selectedPose, "insertUp");
+  }
+
+  insertDown() {
+    this.props.handleClick(this.state.selectedPose, "insertDown");
+  }
+
+  handleSelect(pose) {
+    this.setState({ selectedPose: pose });
+  }
+
+  handleKeyPress(e) {
+    if (e.key === "x") this.removePose();
+    if (e.key === "w") this.insertUp();
+    if (e.key === "s") this.insertDown();
   }
 
   render() {
     return (
-      <div className="card-list">
+      <div className="card-list" onKeyPress={this.handleKeyPress} tabIndex="0">
         {this.props.poses.slice(0, 10).map(pose => {
-          return <PoseCard handleClick={this.handleRemove} pose={pose} />;
+          let selected = this.state.selectedPose;
+          if (selected) {
+            if (selected._id === pose._id)
+              return (
+                <PoseCard
+                  selected={true}
+                  handleClick={this.handleSelect}
+                  pose={pose}
+                />
+              );
+          }
+          return (
+            <PoseCard
+              selected={false}
+              handleClick={this.handleSelect}
+              pose={pose}
+            />
+          );
         })}
       </div>
     );
