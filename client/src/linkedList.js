@@ -4,19 +4,36 @@ function Node(val) {
   obj.previous = null;
   obj.next = null;
 
-  obj.insertBefore = (node => {
-    obj.previous.next = obj.next;
-    obj.next.previous = obj.previous;
-    obj.next = node;
-    node.previous = obj;
+  obj.insertBefore = (sequence => {
+    let previous = obj.previous;
+    let next = obj.next;
+    if (sequence) {
+      sequence.head = obj;
+      obj.previous = null;
+    } else {
+      let superPrevious = previous.previous;
+      superPrevious.next = obj;
+      obj.previous = superPrevious;
+    }
+    obj.next = previous;
+    previous.previous = obj;
+    if (previous) previous.next = next;
+    if (next) next.previous = previous;
   }).bind(obj);
 
-  obj.insertAfter = (() => {
-    obj.previous.next = obj.next;
-    obj.next.previous = obj.previous;
-    obj.next.next = obj;
-    obj.previous = obj.next;
-    obj.next = obj.next.next;
+  obj.insertAfter = (sequence => {
+    let previous = obj.previous;
+    let next = obj.next;
+    if (sequence) {
+      sequence.head = next;
+      next.previous = null;
+    } else {
+      previous.next = next;
+      next.previous = previous;
+    }
+    obj.previous = next;
+    obj.next = next.next;
+    next.next = obj;
   }).bind(obj);
 
   obj.remove = (() => {

@@ -42,12 +42,28 @@ export default class App extends React.Component {
         });
       }
     }
+
     if (e === "insertUp") {
-      selected[pose._id].insertBefore(earlierPose);
-      this.setState({ currentSequence: sequence });
+      let card = selected[pose._id];
+      if (card.previous !== null)
+        if (card.previous.previous === null) {
+          card.insertBefore(sequence);
+          this.setState({
+            currentSequence: sequence
+          });
+        } else {
+          card.insertBefore();
+          this.setState({ currentSequence: sequence });
+        }
     }
+
     if (e === "insertDown") {
-      selected[pose._id].insertAfter();
+      let card = selected[pose._id];
+      if (card.next !== null)
+        if (card.previous === null) {
+          card.insertAfter(sequence);
+        } else card.insertAfter();
+
       this.setState({ currentSequence: sequence });
     }
   }
